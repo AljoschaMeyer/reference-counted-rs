@@ -1,0 +1,19 @@
+[package]
+name = "reference-counted"
+description = "Traits for reference-countered pointers, and corresponding implementations."
+repository = "https://github.com/AljoschaMeyer/reference-counted-rs"
+version = "0.1.0"
+authors = ["Aljoscha Meyer <mail@aljoscha-meyer.de>"]
+edition = "2018"
+license = "CC-PDDC"
+
+[features]
+default = [ "rc", "arc" ]
+
+rc = [ "maybe-std/alloc" ] # provide `Rc` struct implementing the `ReferenceCounted` trait
+arc = [ "maybe-std/alloc" ] # provide `Arc` struct implementing the `ReferenceCounted` trait
+# unstable = [ "maybe-std/unstable" ]
+
+[dependencies]
+maybe-std = "0.1.2"
+smart-pointer = { path = "../smart-pointer" }

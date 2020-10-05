@@ -16,4 +16,4 @@ arc = [ "maybe-std/alloc" ] # provide `Arc` struct implementing the `ReferenceCo
 
 [dependencies]
 maybe-std = "0.1.2"
-smart-pointer = { path = "../smart-pointer" }
+smart-pointer = "0.1.0"

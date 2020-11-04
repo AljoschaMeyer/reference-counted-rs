@@ -2,7 +2,7 @@
 name = "reference-counted"
 description = "Traits for reference-countered pointers, and corresponding implementations."
 repository = "https://github.com/AljoschaMeyer/reference-counted-rs"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Aljoscha Meyer <mail@aljoscha-meyer.de>"]
 edition = "2018"
 license = "CC-PDDC"
@@ -16,4 +16,4 @@ arc = [ "maybe-std/alloc" ] # provide `Arc` struct implementing the `ReferenceCo
 
 [dependencies]
 maybe-std = "0.1.2"
-smart-pointer = "0.1.0"
+smart-pointer = { path = "../smart-pointer" }

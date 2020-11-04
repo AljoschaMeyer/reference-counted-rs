@@ -9,6 +9,7 @@ use base::fmt;
 use base::hash::{Hash, Hasher};
 use base::marker::{PhantomData, Unpin};
 use base::mem;
+use base::num::NonZeroUsize;
 use base::ops::{Deref, DerefMut};
 use base::ptr::{self, NonNull};
 
@@ -292,8 +293,8 @@ impl<T: ?Sized> IntoMut<T> for Rc<T> {
 }
 
 impl<T: ?Sized> ReferenceCounted<T> for Rc<T> {
-    fn reference_count(this: &Self) -> usize {
-        this.ref_count()
+    fn reference_count(this: &Self) -> NonZeroUsize {
+        unsafe { NonZeroUsize::new_unchecked(this.ref_count()) }
     }
 }
 

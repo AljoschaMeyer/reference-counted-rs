@@ -3,6 +3,8 @@
 // #![cfg_attr(feature = "unstable", coerce_unsized, dispatch_from_dyn)]
 extern crate maybe_std as base;
 
+use base::num::NonZeroUsize;
+
 use smart_pointer::IntoMut;
 
 /// A smart pointer that keeps track of how many pointers refer to the same allocation and
@@ -12,7 +14,7 @@ pub trait ReferenceCounted<T: ?Sized>: IntoMut<T> + Clone {
     ///
     /// Implementations must fulfill that `ReferenceCounted::reference_count(this) == 1` implies
     /// `IntoMut::con_make_mut(this) == true`.
-    fn reference_count(this: &Self) -> usize;
+    fn reference_count(this: &Self) -> NonZeroUsize;
 }
 
 #[cfg(feature = "arc")]

@@ -7,6 +7,7 @@ use base::fmt;
 use base::hash::{Hash, Hasher};
 use base::marker::{PhantomData, Unpin};
 use base::mem;
+use base::num::NonZeroUsize;
 use base::ops::{Deref, DerefMut};
 use base::ptr::{self, NonNull};
 use base::sync::atomic;
@@ -366,8 +367,8 @@ impl<T: ?Sized> IntoMut<T> for Arc<T> {
 }
 
 impl<T: ?Sized> ReferenceCounted<T> for Arc<T> {
-    fn reference_count(this: &Self) -> usize {
-        this.inner().strong.load(SeqCst)
+    fn reference_count(this: &Self) -> NonZeroUsize {
+        unsafe { NonZeroUsize::new_unchecked(this.inner().strong.load(SeqCst)) }
     }
 }
 
